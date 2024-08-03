@@ -75,10 +75,42 @@ insert into telefone values (null, 'Com', '21004125', 1);
 insert into telefone values (null, 'Res', '98712402', 5);
 insert into telefone values (null, 'Cel', '19059578', 2);
 
-/*Seleção Projeção e Junção
+/*Seleção Projeção e Junção*/
 
-Projeção = Tudo que voce quer ver na Tela
+/*Projeção = Tudo que voce quer ver na Tela (Select * from ...; )*/
+Select nome from cliente;
 
-Seleção =
+Select IdTelefono, numero, tipo from telefone;
+/*Seleção = É filtrar e trazer um Subconjunto de um Conjunto total (... Where ) */ 
+select nome, sexo, email from cliente
+where sexo = 'F';
 
-Junção =*/
+select numero from telefone
+where tipo = 'cel';
+
+/* Junção = É juntar duas tabelas para uma Seleção */
+/* Usando o whre no lugar do Join */
+select nome, sexo, barrio, cidade
+from cliente, endereço
+where IdCliente = ID_Cliente ;
+
+/* Usando o Inner Join */
+
+select nome, sexo, barrio, cidade
+from cliente
+Inner Join endereço 
+on IdCliente = ID_Cliente;
+
+select nome, sexo, barrio, cidade /* Projeçao */
+from cliente /* Origem */
+    Inner Join endereço  /* Junção */
+    on IdCliente = ID_Cliente
+where sexo = 'F'; /* Seleção */
+
+/* Quero uma Query com Nome, Sexo, Email, Numero, Tipo */
+
+select nome, sexo, email, numero, tipo 
+from cliente
+    Inner Join telefone
+    on IdCliente =ID_Cliente
+where tipo = 'Cel';
