@@ -114,3 +114,21 @@ from cliente
     Inner Join telefone
     on IdCliente =ID_Cliente
 where tipo = 'Cel';
+
+
+/*Junção de mais de duas tabelas*/
+select cliente.nome, sexo, barrio, endereço.cidade, telefone.tipo, telefone.numero
+from cliente
+    inner join endereço
+        on cliente.IdCliente = endereço.ID_Cliente
+    inner join telefone
+        on cliente.IdCliente = telefone.ID_Cliente;
+
+
+/*Possivel tambem utilizando "Alias" (colocando apelido nas tabelas, conhecido como ponteramento)*/
+    select C.nome, C.sexo, E.barrio, E.cidade, T.tipo, T.numero
+from cliente C
+    inner join endereço E
+        on C.IdCliente = E.ID_Cliente
+    inner join telefone T
+        on C.IdCliente = T.ID_Cliente;
