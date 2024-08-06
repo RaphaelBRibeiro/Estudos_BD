@@ -139,3 +139,38 @@ from cliente C
 where sexo = 'F'
     and barrio = 'Centro' and estado = 'RJ'
     and (tipo = 'res' or tipo = 'Com' );
+
+
+
+/* PARA UMA CAMPANHA DE MARKETING, O SETOR SOLICITOU UM
+RELATÓRIO COM O NOME, EMAIL E TELEFONE CELULAR 
+DOS CLIENTES QUE MORAM NO ESTADO DO RIO DE JANEIRO 
+VOCÊ TERÁ QUE PASSAR A QUERY PARA GERAR O RELATORIO PARA
+O PROGRAMADOR */
+select C.nome, C.email, 
+    T.Numero, T.tipo,
+    E.Estado, E.Cidade
+from cliente C
+    inner join telefone T
+        on C.IdCliente = T.ID_Cliente
+    inner join Endereço E
+        on C.IdCliente = E.ID_Cliente
+where tipo = 'Cel'
+    and Estado = 'RJ';   
+
+/* PARA UMA CAMPANHA DE PRODUTOS DE BELEZA, O COMERCIAL SOLICITOU UM
+RELATÓRIO COM O NOME, EMAIL E TELEFONE CELULAR 
+ DAS MULHERES QUE MORAM NO ESTADO DE SÃO PAULO 
+VOCÊ TERÁ QUE PASSAR A QUERY PARA GERAR O RELATORIO PARA
+O PROGRAMADOR */
+select C.nome, C.email, Sexo,
+    T.Numero as Celular,
+    E.Estado
+from cliente C
+    inner join Telefone T
+        on C.IdCliente = T.ID_Cliente
+    inner join Endereço E
+        on C.IdCliente = E.ID_Cliente
+where sexo = 'F'
+    and tipo = 'Cel'
+    and estado = 'SP';
