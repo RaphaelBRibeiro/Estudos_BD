@@ -194,35 +194,3 @@ from cliente C
         on C.IdCliente = E.ID_Cliente
     inner join telefone T
         on C.IdCliente = T.ID_Cliente;
-
-/* VIEWS - uma Função para visualização das tabelas */
-/*Nome, sexo, Email, Numero, Tipo, Barrio, Cidade, Estado*/
-
-create view Relatorio as 
-select C.nome, C.sexo, C.Email, 
-    T.Numero, T.Tipo, 
-    E.Barrio, E.Cidade, E.Estado 
-from cliente C
-    inner join Telefone T
-        on C.IdCliente = T.ID_Cliente
-    inner join Endereço E
-        on C.IdCliente = E.ID_Cliente ;
-
-select * from Relatorio;
-/* para visualiazar as views programadas, use o comando 'Show tables' */
-
-/*Pode utilizar um Prefixo para identificar as view das tabelas*/
-
-create view V_Relatorio as 
-select C.nome, C.sexo,
-    IFNULL(C.Email, '***********' ) as 'E-mail', 
-    T.Numero, T.Tipo, 
-    E.Barrio, E.Cidade, E.Estado 
-from cliente C
-    inner join Telefone T
-        on C.IdCliente = T.ID_Cliente
-    inner join Endereço E
-        on C.IdCliente = E.ID_Cliente ; 
-
-select Nome, numero, estado 
-from V_Relatorio;
