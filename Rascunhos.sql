@@ -238,7 +238,13 @@ from cliente C   ----------------------- /*A tabela Princiapal */
     inner join Telefone T   ------------ /* As outras tabelas */  
         on C.IdCliente = T.ID_Cliente
     inner join Endereço E
-        on C.IdCliente = E.ID_Cliente ;        
+        on C.IdCliente = E.ID_Cliente ; 
+
+        -- Estrutura Base de INNER JOIN
+select 
+from
+    inner join 
+        on ;      
 /*não é possivel utilizar comandos de INSERT nem de DELETE quando um view tem JOIN (mas é possivel utilizar o UPDATE e WHERE) 
 e TAMBEM altera na PROPRIA TABELA */
 
@@ -248,8 +254,34 @@ DCL - DATA CONTROL LANGUAGE
 TCL - TRANSACTION CONTRAOL LANGUAGE
 
 
+/*Ordenar com Join*/
 
+
+select * from V_Relatorio
+order by 1;
 
 
 /* DELIMITER / DELIMITADOR - O delimitador vem de forma padrao como ";" mas é possivel mudar*/
 DELIMITER $
+
+-- PROCUDURES  
+DELIMITER $
+
+create Procedure Nome ()
+begin  ------ começo
+    qualquer programaçao; --- Alterar o Delimiter é necessario para que o banco não termine a leitura antes do fim
+
+end    ------- fim
+$
+Delimiter ;
+
+Delimiter & 
+create procedure Consul_Curso(P_IDCurso int)
+begin
+    select Nome, valor
+    from cursos
+    where iDCurso = P_IDCurso;
+end
+&
+
+Delimiter ;
